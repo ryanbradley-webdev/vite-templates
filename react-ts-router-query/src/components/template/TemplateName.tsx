@@ -1,6 +1,6 @@
-import styles from './Template.module.css'
+import styles from './TemplateName.module.css'
 
-export default function Template() {
+export default function TemplateName() {
     return (
         <div
             className={styles.template}
