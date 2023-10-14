@@ -1,7 +1,14 @@
+import { useQuery } from '@tanstack/react-query'
+import { getLibraries } from '../../lib/getLibraries'
 import Logo from '../../assets/logo.svg'
 import styles from './Home.module.css'
 
 export default function Home() {
+    const { data: libraries } = useQuery({
+        queryFn: getLibraries,
+        queryKey: ['libraries']
+    })
+
     return (
         <main
             className={styles.main}
@@ -20,9 +27,19 @@ export default function Home() {
                     Vite Template
                 </h1>
 
-                <h2>
-                    TypeScript, React-Router, Tanstack Query
-                </h2>
+                {libraries && (
+                    <h2>
+                        
+                        {libraries.map((library, idx) => (
+                            <span
+                                key={idx}
+                            >
+                                {library + (idx < libraries.length - 1 ? ', ' : '')}
+                            </span>
+                        ))}
+
+                    </h2>
+                )}
 
             </section>
 
